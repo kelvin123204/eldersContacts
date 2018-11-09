@@ -21,7 +21,7 @@ class AddContacts: UIViewController, UIImagePickerControllerDelegate, UINavigati
     @IBOutlet var viewForImage: UIView!
     @IBOutlet weak var buttonForImage: UIButton!
     
-    
+ 
     
     //dismiss when touch outside of the popup view
     @IBAction func cancelAddContact(_ sender: Any) {
@@ -64,7 +64,7 @@ class AddContacts: UIViewController, UIImagePickerControllerDelegate, UINavigati
     }
     
     //Add the contact to coredata
-    @IBAction func AddContact(_ sender: Any) {
+    @IBAction func AddContact(_ sender: Any , view : Any) {
         dismiss(animated: true, completion: nil)
         vibration()
         checkAddContact()
@@ -119,7 +119,6 @@ class AddContacts: UIViewController, UIImagePickerControllerDelegate, UINavigati
         }
         if firstName != "" && familyName != "" {
             print("success")
-         
             let contact = CNMutableContact()
             
             contact.givenName = firstName

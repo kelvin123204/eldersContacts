@@ -9,12 +9,13 @@
 import UIKit
 import Contacts
 import AVFoundation
+import CoreData
 
 class Edit: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
-    var contect: CNContact? 
+    var contect: CNContact?
     @IBOutlet var body: UIView!
     @IBOutlet var head: UIView!
-    
+    var permphone = ""
     @IBOutlet var profilePic: UIImageView!
     @IBAction func AddPhoto(_ sender: Any) {
         FirstName.resignFirstResponder()
@@ -50,6 +51,13 @@ class Edit: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelega
     @IBOutlet var FirstName: UITextField!
     @IBOutlet var FamiyName: UITextField!
     @IBOutlet var Phone: UITextField!
+    @IBOutlet weak var Comand: UITextField!
+    
+    var contacts : [Contacts] = []
+    
+    let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
     
     @IBAction func Update(_ sender: Any) {
         guard let firstName = FirstName.text else {
@@ -71,7 +79,6 @@ class Edit: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelega
         }
         if firstName != "" && familyName != "" {
             print("success")
-            
             let contact = contect?.mutableCopy() as! CNMutableContact
             
             contact.givenName = firstName
@@ -87,12 +94,47 @@ class Edit: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelega
             let saveRequest = CNSaveRequest()
             saveRequest.update(contact)
             try! store.execute(saveRequest)
+            
+            if Comand.text != "" {
+                do {
+                    let fetchRequest : NSFetchRequest<Contacts> = Contacts.fetchRequest()
+                    fetchRequest.predicate = NSPredicate(format: "phone == %@", permphone)
+                    contacts = try context.fetch(fetchRequest)
+                    
+                    if contacts.count > 0 {
+                        var isRecordFound = false
+                        for contact in contacts {
+                            contact.phone = String(phone)
+                            contact.toCall = Comand.text
+                            isRecordFound = true
+                        }
+                        if isRecordFound {
+                            appDelegate.saveContext()
+                        } else {
+                            let comcontact = Contacts(context: context)
+                            comcontact.toCall = Comand.text
+                            comcontact.phone = Phone.text
+                            appDelegate.saveContext()
+                        }
+                    } else {
+                        let comcontact = Contacts(context: context)
+                        comcontact.toCall = Comand.text
+                        comcontact.phone = Phone.text
+                        appDelegate.saveContext()
+                    }
+                } catch {
+                    print("data fetch error")
+                }
+            } else {
+                print("this record cannot be found")
+            }
         }
     }
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        permphone = Phone.text!
         FirstName.delegate = self
         FamiyName.delegate = self
         Phone.delegate = self
@@ -115,6 +157,7 @@ class Edit: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelega
         backgroundImageView.contentMode = .scaleAspectFill
         //how saturate is the image
         backgroundImageView.alpha = 0.3
+        //tablereload
         
         self.view.insertSubview(backgroundImageView, at: 0)
     }
@@ -136,5 +179,8 @@ class Edit: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelega
     func vibration () {
         AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
         print("vibrate")
+    }
+    func getContactPhone() {
+        
     }
 }

@@ -18,7 +18,6 @@ class customViewCell: UITableViewCell{
 class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var table: UITableView!
 
-    
     private var contactArr: [CNContact] = []
     // var person: CNContact?
     var selectedRowNumber: Int?
@@ -59,6 +58,21 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         selectedRowNumber = indexPath.row
         let cell = tableView.cellForRow(at: indexPath)
         self.performSegue(withIdentifier: "contact", sender: cell)
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == UITableViewCellEditingStyle.delete {
+            
+            let delContact = contactArr[indexPath.row].mutableCopy() as! CNMutableContact
+            
+            let store = CNContactStore()
+            let saveRequest = CNSaveRequest()
+            saveRequest.delete(delContact)
+            try! store.execute(saveRequest)
+            
+            contactArr.remove(at: indexPath.row)
+            table.reloadData()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -170,7 +184,6 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
             print("identifier is nil")
         }
     }
-    
     
     func vibration () {
         AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))

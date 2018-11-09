@@ -14,6 +14,7 @@
 		89523048219142320067669B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89523046219142320067669B /* LaunchScreen.storyboard */; };
 		8952305621916A650067669B /* personInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8952305521916A650067669B /* personInfo.swift */; };
 		896E0E882191BD4E006F75CD /* EldersContactsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896E0E872191BD4E006F75CD /* EldersContactsTests.swift */; };
+		F9362E2F2195D445002E4F54 /* VoiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9362E2E2195D445002E4F54 /* VoiceViewController.swift */; };
 		F961A86D21933E1600F66429 /* HoboStd.otf in Resources */ = {isa = PBXBuildFile; fileRef = F961A86C21933E1600F66429 /* HoboStd.otf */; };
 		F961A8702193729500F66429 /* Contects.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F961A86E2193729500F66429 /* Contects.xcdatamodeld */; };
 		F961A87421937DB100F66429 /* AddContacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = F961A87321937DB100F66429 /* AddContacts.swift */; };
@@ -40,6 +41,7 @@
 		8952305521916A650067669B /* personInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = personInfo.swift; sourceTree = "<group>"; };
 		896E0E872191BD4E006F75CD /* EldersContactsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EldersContactsTests.swift; sourceTree = "<group>"; };
 		896E0E892191BD4E006F75CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F9362E2E2195D445002E4F54 /* VoiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceViewController.swift; sourceTree = "<group>"; };
 		F937E6BF2194820E00051159 /* EldersContacts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EldersContacts.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F937E6C02194820E00051159 /* EldersContactsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EldersContactsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F961A86C21933E1600F66429 /* HoboStd.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = HoboStd.otf; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 				8952305521916A650067669B /* personInfo.swift */,
 				F961A86E2193729500F66429 /* Contects.xcdatamodeld */,
 				F994F1012195539300F31DA0 /* Edit.swift */,
+				F9362E2E2195D445002E4F54 /* VoiceViewController.swift */,
 			);
 			path = EldersContacts;
 			sourceTree = "<group>";
@@ -216,6 +219,7 @@
 				8952303C219142310067669B /* AppDelegate.swift in Sources */,
 				8952305621916A650067669B /* personInfo.swift in Sources */,
 				F961A8702193729500F66429 /* Contects.xcdatamodeld in Sources */,
+				F9362E2F2195D445002E4F54 /* VoiceViewController.swift in Sources */,
 				F961A87421937DB100F66429 /* AddContacts.swift in Sources */,
 				8952303E219142310067669B /* FirstViewController.swift in Sources */,
 				F994F1022195539300F31DA0 /* Edit.swift in Sources */,
@@ -384,7 +388,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KX3F5J87VP;
 				INFOPLIST_FILE = EldersContacts/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -405,7 +409,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KX3F5J87VP;
 				INFOPLIST_FILE = EldersContacts/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
