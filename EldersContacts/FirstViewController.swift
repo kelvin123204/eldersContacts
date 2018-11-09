@@ -94,8 +94,8 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         table.reloadData()
     }
     
-    override func willMove(toParent parent: UIViewController?) {
-        super.willMove(toParent: parent)
+    override func willMove(toParentViewController parent: UIViewController?) {
+        super.willMove(toParentViewController: parent)
         
         if parent == self.navigationController?.parent {
             print("Back tapped")
