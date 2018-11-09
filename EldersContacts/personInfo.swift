@@ -13,14 +13,28 @@ import AudioToolbox
 import AVFoundation
 
 class personInfo: UIViewController {
+    var content: CNContact?     // the contact that have been selected from the contact list
+    
     @IBOutlet var personImage: UIImageView!
     
-    var content: CNContact?     // the contact that have been selected from the contact list
+    
     
     @IBAction func message(_ sender: Any) {
         let string = "message"
         let utterance = AVSpeechUtterance(string: string)
         utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
+        
+        if let temp = content{
+            let phoneNum = temp.phoneNumbers.first?.value.stringValue
+            let url = URL(string: "sms:\(toValidPhoneNum(phoneNum!))")
+            if #available(iOS 10.0, *) {
+                UIApplication.shared.open(url!)
+            } else {
+                UIApplication.shared.openURL(url!)
+            }
+        }else{
+            print("content is nil")
+        }
         
         let synth = AVSpeechSynthesizer()
         synth.speak(utterance)
@@ -35,12 +49,16 @@ class personInfo: UIViewController {
         let synth = AVSpeechSynthesizer()
         synth.speak(utterance)
         
-        let contactnum = content?.phoneNumbers.first?.value.stringValue ?? ""
-        let url : URL = URL (string: contactnum)!
-    
-        if UIApplication.shared.canOpenURL(url) {
-           UIApplication.shared.openURL(url)
-            print(url)
+        if let temp = content{
+            let phoneNum = temp.phoneNumbers.first?.value.stringValue
+            let url = URL(string: "tel:\(toValidPhoneNum(phoneNum!))")
+            if #available(iOS 10.0, *) {
+                UIApplication.shared.open(url!)
+            } else {
+                UIApplication.shared.openURL(url!)
+            }
+        }else{
+            print("content is nil")
         }
         vibration()
     }
@@ -52,7 +70,6 @@ class personInfo: UIViewController {
             let lName = temp.familyName
             self.title = fName + " " + lName
             personImage.image = UIImage.init(data: temp.imageData ?? Data.init())// temporary solution
-            
             personImage.layer.cornerRadius = personImage.frame.size.width/2
             personImage.clipsToBounds = true
         }else{
@@ -104,6 +121,22 @@ class personInfo: UIViewController {
         AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
         print("vibrate")
     }
-    
+}
 
+func matches(for regex: String, in text: String) -> [String] {
+    do {
+        let regex = try NSRegularExpression(pattern: regex)
+        let results = regex.matches(in: text, range: NSRange(text.startIndex..., in: text))
+        return results.map {
+            String(text[Range($0.range, in: text)!])
+        }
+    } catch let error {
+        print("invalid regex: \(error.localizedDescription)")
+        return []
+    }
+}
+
+private func toValidPhoneNum(_ string: String) -> String{
+    let matched = matches(for: "[0-9]", in: string)         // only extract the digits
+    return matched.joined(separator: "")
 }
