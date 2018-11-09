@@ -75,6 +75,18 @@ class personInfo: UIViewController {
         self.view.insertSubview(backgroundImageView, at: 0)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let identifier = segue.identifier{
+            if identifier == "info"{
+                let temp: Edit = segue.destination as! Edit
+                temp.contect = content
+            }else{
+                print("identifier failed")
+            }
+        }else{
+            print("identifier is nil")
+        }
+    }
     
     private func printAllContactInfo(_ contact: CNContact){
         print("PERSONINFO: \(contact.givenName)")

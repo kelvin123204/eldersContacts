@@ -59,6 +59,10 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.performSegue(withIdentifier: "contact", sender: cell)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        updateContactList()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -86,7 +90,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         //navigationController?.navigationBar.backIndicatorImage = UIImage.init(named: "back1.png")
         //navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage.init(named: "back1.png")
         
-        fetchContact()
+        //fetchContact()
         
     }
     
@@ -169,6 +173,12 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func vibration () {
         AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
         print("vibrate")
+    }
+    
+    func updateContactList(){
+        contactArr = []
+        fetchContact()
+        table.reloadData()
     }
 }
 
