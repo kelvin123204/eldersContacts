@@ -96,16 +96,12 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        updateContactList()
-    }
-    
     override func viewDidAppear(_ animated: Bool) {
         table.reloadData()
     }
     
-    override func willMove(toParent parent: UIViewController?) {
-        super.willMove(toParent: parent)
+    override func willMove(toParentViewController parent: UIViewController?) {
+        super.willMove(toParentViewController: parent)
         
         if parent == self.navigationController?.parent {
             print("Back tapped")

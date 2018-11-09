@@ -100,6 +100,7 @@ class Edit: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelega
         FirstName.text = contect?.givenName
         FamiyName.text = contect?.familyName
         Phone.text = contect?.phoneNumbers.first?.value.stringValue ?? ""
+        profilePic.image = UIImage.init(data: contect?.imageData ?? Data.init())
         
         body.layer.cornerRadius = body.frame.width/2.5
         body.clipsToBounds = true
