@@ -39,8 +39,10 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         //set font size of the name
         let size = 30 as CGFloat
         
+        cell.contactName.adjustsFontSizeToFitWidth = true
+        
         //set font style
-        cell.contactName.font = UIFont(name: "HoboStd", size: size)
+        cell.contactName.font = UIFont(name: "Bradley Hand", size: size)
         
         //set name to contact
         cell.contactName.text = name
