@@ -109,7 +109,12 @@ class AddContacts: UIViewController, UIImagePickerControllerDelegate, UINavigati
             return
         }
         guard let phone = Int64(Phone.text!) else {
-            print("Phone Error")
+            let string = "phone must be number digit zero to nine"
+            let utterance = AVSpeechUtterance(string: string)
+            utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
+            
+            let synth = AVSpeechSynthesizer()
+            synth.speak(utterance)
             return
         }
         if firstName != "" && familyName != "" {
@@ -123,18 +128,21 @@ class AddContacts: UIViewController, UIImagePickerControllerDelegate, UINavigati
             if let imageData = profilePic.image {
                 contact.imageData = imageData.jpegData(compressionQuality: 1)
             } else {
-                let string = "First name and family name cannot be empty"
-                let utterance = AVSpeechUtterance(string: string)
-                utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
-                
-                let synth = AVSpeechSynthesizer()
-                synth.speak(utterance)
+               
             }
             let store = CNContactStore()
             let saveRequest = CNSaveRequest()
-            saveRequest.add(contact, toContainerWithIdentifier: nil)
+            saveRequest.add(contact, toContainerWithIdentifier: "\(firstName)")
             try! store.execute(saveRequest)
+            
             let string = "\(contact.givenName) \(contact.familyName) is added to contact"
+            let utterance = AVSpeechUtterance(string: string)
+            utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
+            
+            let synth = AVSpeechSynthesizer()
+            synth.speak(utterance)
+        } else {
+            let string = "First name and family name cannot be empty"
             let utterance = AVSpeechUtterance(string: string)
             utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
             

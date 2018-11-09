@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		8952303C219142310067669B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8952303B219142310067669B /* AppDelegate.swift */; };
 		8952303E219142310067669B /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8952303D219142310067669B /* FirstViewController.swift */; };
-		89523040219142310067669B /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8952303F219142310067669B /* SecondViewController.swift */; };
 		89523043219142310067669B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89523041219142310067669B /* Main.storyboard */; };
 		89523045219142320067669B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 89523044219142320067669B /* Assets.xcassets */; };
 		89523048219142320067669B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89523046219142320067669B /* LaunchScreen.storyboard */; };
@@ -18,6 +17,7 @@
 		F961A86D21933E1600F66429 /* HoboStd.otf in Resources */ = {isa = PBXBuildFile; fileRef = F961A86C21933E1600F66429 /* HoboStd.otf */; };
 		F961A8702193729500F66429 /* Contects.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F961A86E2193729500F66429 /* Contects.xcdatamodeld */; };
 		F961A87421937DB100F66429 /* AddContacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = F961A87321937DB100F66429 /* AddContacts.swift */; };
+		F994F1022195539300F31DA0 /* Edit.swift in Sources */ = {isa = PBXBuildFile; fileRef = F994F1012195539300F31DA0 /* Edit.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,7 +33,6 @@
 /* Begin PBXFileReference section */
 		8952303B219142310067669B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8952303D219142310067669B /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		8952303F219142310067669B /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		89523042219142310067669B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		89523044219142320067669B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		89523047219142320067669B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -46,6 +45,7 @@
 		F961A86C21933E1600F66429 /* HoboStd.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = HoboStd.otf; sourceTree = "<group>"; };
 		F961A86F2193729500F66429 /* Contects.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Contects.xcdatamodel; sourceTree = "<group>"; };
 		F961A87321937DB100F66429 /* AddContacts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContacts.swift; sourceTree = "<group>"; };
+		F994F1012195539300F31DA0 /* Edit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Edit.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,7 +82,6 @@
 				F961A86B21933D8000F66429 /* Resource */,
 				8952303B219142310067669B /* AppDelegate.swift */,
 				8952303D219142310067669B /* FirstViewController.swift */,
-				8952303F219142310067669B /* SecondViewController.swift */,
 				89523044219142320067669B /* Assets.xcassets */,
 				89523041219142310067669B /* Main.storyboard */,
 				F961A87321937DB100F66429 /* AddContacts.swift */,
@@ -90,6 +89,7 @@
 				89523049219142320067669B /* Info.plist */,
 				8952305521916A650067669B /* personInfo.swift */,
 				F961A86E2193729500F66429 /* Contects.xcdatamodeld */,
+				F994F1012195539300F31DA0 /* Edit.swift */,
 			);
 			path = EldersContacts;
 			sourceTree = "<group>";
@@ -213,12 +213,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				89523040219142310067669B /* SecondViewController.swift in Sources */,
 				8952303C219142310067669B /* AppDelegate.swift in Sources */,
 				8952305621916A650067669B /* personInfo.swift in Sources */,
 				F961A8702193729500F66429 /* Contects.xcdatamodeld in Sources */,
 				F961A87421937DB100F66429 /* AddContacts.swift in Sources */,
 				8952303E219142310067669B /* FirstViewController.swift in Sources */,
+				F994F1022195539300F31DA0 /* Edit.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
