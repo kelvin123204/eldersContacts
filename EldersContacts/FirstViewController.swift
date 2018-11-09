@@ -90,12 +90,16 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        updateContactList()
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         table.reloadData()
     }
     
-    override func willMove(toParentViewController parent: UIViewController?) {
-        super.willMove(toParentViewController: parent)
+    override func willMove(toParent parent: UIViewController?) {
+        super.willMove(toParent: parent)
         
         if parent == self.navigationController?.parent {
             print("Back tapped")
@@ -169,6 +173,12 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func vibration () {
         AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
         print("vibrate")
+    }
+    
+    func updateContactList(){
+        contactArr = []
+        fetchContact()
+        table.reloadData()
     }
 }
 

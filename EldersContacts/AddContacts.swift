@@ -91,13 +91,12 @@ class AddContacts: UIViewController, UIImagePickerControllerDelegate, UINavigati
         vibration()
     }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
         profilePic.image = image
         profilePic.layer.cornerRadius = profilePic.frame.width/2
         profilePic.clipsToBounds = true
         dismiss(animated:true, completion: nil)
-        //
     }
     
     func checkAddContact() {
@@ -122,8 +121,7 @@ class AddContacts: UIViewController, UIImagePickerControllerDelegate, UINavigati
             contact.familyName = familyName
             contact.phoneNumbers = [CNLabeledValue(label: CNLabelPhoneNumberiPhone, value: CNPhoneNumber(stringValue: String(phone)))]
             if let imageData = profilePic.image {
-                contact.imageData = UIImageJPEGRepresentation(imageData, 1)
-                
+                contact.imageData = imageData.jpegData(compressionQuality: 1)
             } else {
                 let string = "First name and family name cannot be empty"
                 let utterance = AVSpeechUtterance(string: string)
@@ -149,6 +147,7 @@ class AddContacts: UIViewController, UIImagePickerControllerDelegate, UINavigati
         AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
         print("vibrate")
     }
+    
 }
 
 
