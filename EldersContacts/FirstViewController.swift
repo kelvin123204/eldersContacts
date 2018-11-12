@@ -16,6 +16,11 @@ class customViewCell: UITableViewCell{
 }
 
 class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    @IBAction func unwindFromAddContact(segue:UIStoryboardSegue){
+        updateContactList()
+    }
+    
     @IBOutlet weak var table: UITableView!
 
     private var contactArr: [CNContact] = []
@@ -60,8 +65,8 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.performSegue(withIdentifier: "contact", sender: cell)
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == UITableViewCellEditingStyle.delete {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == UITableViewCell.EditingStyle.delete {
             
             let delContact = contactArr[indexPath.row].mutableCopy() as! CNMutableContact
             
@@ -114,8 +119,8 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         table.reloadData()
     }
     
-    override func willMove(toParentViewController parent: UIViewController?) {
-        super.willMove(toParentViewController: parent)
+    override func willMove(toParent parent: UIViewController?) {
+        super.willMove(toParent: parent)
         
         if parent == self.navigationController?.parent {
             print("Back tapped")
@@ -140,12 +145,15 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
                     try store.enumerateContacts(with: request, usingBlock: {
                         (contact, stopPointer) in
                         self.contactArr.append(contact)
+                        self.contactArr.sort(by: { (a, b) -> Bool in
+                            return b.givenName.lowercased() > a.givenName.lowercased()
+                        })
                     })
                 }catch let err {
-                    print("Failed to enum... contacts", err)
+                    print("Failed to enum. contacts", err)
                 }
             }else{
-                print("Access denied...")
+                print("Access denied")
             }
         })
     }
@@ -173,7 +181,6 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
                         printAllContactInfo(person)
                         temp.content = person
                         vibration()
-                        
                     }else{
                         print("cannot get the row number")
                     }
@@ -181,7 +188,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 print("identifier failed")
             }
         }else{
-            print("identifier is nil")
+            print("Add contect")
         }
     }
     

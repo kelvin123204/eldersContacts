@@ -133,10 +133,10 @@ class VoiceViewController: UIViewController , UITableViewDelegate, UITableViewDa
         let audioSession = AVAudioSession.sharedInstance()
         //try audioSession.setCategory(AVAudioSession.Category.record)
         do {
-            //try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
-            //try AVAudioSession.sharedInstance().perform(NSSelectorFromString("setCategory:withOptions:error:"), with: AVAudioSession.setCategory(.playback, with:  []))
-            //try AVAudioSession.sharedInstance().setCategory(.init(""), mode: default, options: Any)
-            try AVAudioSession.sharedInstance().setActive(true)
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+//            try AVAudioSession.sharedInstance().perform(NSSelectorFromString("setCategory:withOptions:error:"), with: //AVAudioSession.setCategory(.playback, with:  []))
+//            try AVAudioSession.sharedInstance().setCategory(.init(""), mode: .default, options: Any)
+//            try AVAudioSession.sharedInstance().setActive(true)
         } catch {
             print(error)
         }

@@ -137,6 +137,6 @@ func matches(for regex: String, in text: String) -> [String] {
 }
 
 private func toValidPhoneNum(_ string: String) -> String{
-    let matched = matches(for: "[0-9]", in: string)         // only extract the digits
+    let matched = matches(for: "\\d", in: string)         // only extract the digits
     return matched.joined(separator: "")
 }

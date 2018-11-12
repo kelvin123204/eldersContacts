@@ -38,8 +38,8 @@ class Edit: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelega
         vibration()
     }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+    private func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
         profilePic.image = image
         profilePic.layer.cornerRadius = profilePic.frame.width/2
         profilePic.clipsToBounds = true
@@ -85,7 +85,7 @@ class Edit: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelega
             contact.familyName = familyName
             contact.phoneNumbers = [CNLabeledValue(label: CNLabelPhoneNumberiPhone, value: CNPhoneNumber(stringValue: String(phone)))]
             if let imageData = profilePic.image {
-                contact.imageData = UIImageJPEGRepresentation(imageData, 1)
+                contact.imageData = imageData.jpegData(compressionQuality: 1)
             } else {
                 
             }
