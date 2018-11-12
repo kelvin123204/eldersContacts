@@ -12,7 +12,7 @@ import AVFoundation
 import CoreData
 
 class Edit: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
-    var contect: CNContact?
+    var contect: CNContact?             // segue from previous page
     @IBOutlet var body: UIView!
     @IBOutlet var head: UIView!
     var permphone = ""
@@ -38,7 +38,7 @@ class Edit: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelega
         vibration()
     }
     
-    private func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
         profilePic.image = image
         profilePic.layer.cornerRadius = profilePic.frame.width/2
@@ -87,13 +87,17 @@ class Edit: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelega
             if let imageData = profilePic.image {
                 contact.imageData = imageData.jpegData(compressionQuality: 1)
             } else {
-                
+                print("profile Pic is nil")
             }
             
             let store = CNContactStore()
             let saveRequest = CNSaveRequest()
             saveRequest.update(contact)
-            try! store.execute(saveRequest)
+            do{
+                try store.execute(saveRequest)
+            }catch{
+                print("Cannot update the contact")
+            }
             
             if Comand.text != "" {
                 do {
@@ -128,6 +132,14 @@ class Edit: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelega
             } else {
                 print("this record cannot be found")
             }
+            self.performSegue(withIdentifier: "updatedSegue", sender: self)
+        }else{
+            // user change their contact's first or last name to empty
+            let alert = UIAlertController.init(title: "Alert", message: "First Name or Last Name cannot be empty", preferredStyle: .alert)
+            alert.addAction(UIAlertAction.init(title: "OK", style: .default, handler: { (self) in
+                print("empty first Name Field and empty last name field in editing")
+            }))
+            self.present(alert, animated: true, completion: nil)
         }
     }
 
@@ -179,8 +191,5 @@ class Edit: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelega
     func vibration () {
         AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
         print("vibrate")
-    }
-    func getContactPhone() {
-        
     }
 }

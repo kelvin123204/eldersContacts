@@ -202,7 +202,6 @@
                                         </state>
                                         <connections>
                                             <action selector="Update:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="97G-zP-zaM"/>
-                                            <segue destination="oCi-jE-AnA" kind="unwind" unwindAction="unwindFromAddContactWithSegue:" id="ehk-9W-2LN"/>
                                         </connections>
                                     </button>
                                     <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Voice Command" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VgJ-50-raD">
@@ -235,10 +234,11 @@
                         <outlet property="body" destination="CM3-0j-Luf" id="e8g-Cw-txr"/>
                         <outlet property="head" destination="ua5-Ih-b42" id="0mP-Xq-Cbm"/>
                         <outlet property="profilePic" destination="bzF-HB-TUg" id="1nh-mM-r83"/>
+                        <segue destination="pCc-1N-M0A" kind="unwind" identifier="updatedSegue" unwindAction="unwindSegueWithSegue:" id="ki9-de-YLN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
-                <exit id="oCi-jE-AnA" userLabel="Exit" sceneMemberID="exit"/>
+                <exit id="pCc-1N-M0A" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2292" y="377.36131934032989"/>
         </scene>
@@ -295,7 +295,6 @@
                                             </state>
                                             <connections>
                                                 <action selector="AddContact:view:" destination="AFZ-3q-LYV" eventType="touchUpInside" id="ltR-dT-DXP"/>
-                                                <segue destination="1q7-C2-HJY" kind="unwind" unwindAction="unwindFromAddContactWithSegue:" id="8WR-kI-Ns1"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -334,6 +333,7 @@
                         <outlet property="profilePic" destination="yri-ie-87w" id="Rti-tO-6cA"/>
                         <outlet property="viewForImage" destination="EWr-Pf-cKm" id="Qkb-Mh-4y5"/>
                         <outlet property="viewForInput" destination="CnL-xs-0Fg" id="IDq-xd-jNv"/>
+                        <segue destination="1q7-C2-HJY" kind="unwind" identifier="addedSegue" unwindAction="unwindSegueWithSegue:" id="oWL-MR-7Dj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m9I-wR-4Fz" userLabel="First Responder" sceneMemberID="firstResponder"/>

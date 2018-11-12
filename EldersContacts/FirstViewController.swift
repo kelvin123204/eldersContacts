@@ -17,11 +17,17 @@ class customViewCell: UITableViewCell{
 
 class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    @IBAction func unwindFromAddContact(segue:UIStoryboardSegue){
-        updateContactList()
-    }
-    
     @IBOutlet weak var table: UITableView!
+    
+    @IBAction func unwindSegue(segue:UIStoryboardSegue){
+        if segue.identifier == "addedSegue"{
+            updateContactList()
+        }else if segue.identifier == "updatedSegue"{
+            print("Don't need to update again, because viewWillAppear will do that")
+        }else{
+            
+        }
+    }
 
     private var contactArr: [CNContact] = []
     // var person: CNContact?
@@ -115,9 +121,9 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        table.reloadData()
-    }
+//    override func viewDidAppear(_ animated: Bool) {
+//        table.reloadData()
+//    }
     
     override func willMove(toParent parent: UIViewController?) {
         super.willMove(toParent: parent)

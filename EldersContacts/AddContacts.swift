@@ -140,20 +140,20 @@ class AddContacts: UIViewController, UIImagePickerControllerDelegate, UINavigati
             let synth = AVSpeechSynthesizer()
             synth.speak(utterance)
         } else {
-            let string = "First name and family name cannot be empty"
+            let string = "Both first name and family name cannot be empty"
             let utterance = AVSpeechUtterance(string: string)
             utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
             
             let synth = AVSpeechSynthesizer()
             synth.speak(utterance)
         }
+        self.performSegue(withIdentifier: "addedSegue", sender: self)
     }
     
     func vibration () {
         AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
         print("vibrate")
     }
-    
 }
 
 

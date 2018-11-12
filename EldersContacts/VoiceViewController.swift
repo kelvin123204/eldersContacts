@@ -187,6 +187,7 @@ class VoiceViewController: UIViewController , UITableViewDelegate, UITableViewDa
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        myTexView.adjustsFontSizeToFitWidth = true
         authorizeSR()
         // Do any additional setup after loading the view.
     }
